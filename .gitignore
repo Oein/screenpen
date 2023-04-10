@@ -1,0 +1,4 @@
+dist
+distTS
+node_modules
+**/.DS_Store
