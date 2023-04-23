@@ -6,6 +6,7 @@ import {
   Tray,
   Menu,
   nativeImage,
+  ipcMain,
 } from "electron";
 import path from "path";
 import screenshotDesktop from "screenshot-desktop";
@@ -29,6 +30,9 @@ const createWindow = (x: number, y: number, width: number, height: number) => {
       autoHideMenuBar: true,
       frame: false,
       alwaysOnTop: true,
+      webPreferences: {
+        preload: path.join(__dirname, "preload.js"),
+      },
     })
   );
 
@@ -70,24 +74,12 @@ app.whenReady().then(async () => {
       height: 22,
     })
   );
-  const contextMenu = Menu.buildFromTemplate([
-    { label: 'Press "Ctrl + Shift + ."', type: "normal" },
-    { label: "To draw on your screen", type: "normal" },
-    { type: "separator" },
-    { label: "Press ESC", type: "normal" },
-    { label: "To exit from drawing mode", type: "normal" },
-    { type: "separator" },
-    { label: "Quit", type: "normal" },
-  ]);
-  tray.setContextMenu(contextMenu);
-  contextMenu.items[6].click = () => {
-    app.exit();
-  };
 
   await (async () => {
     displays = await screenshotDesktop.listDisplays();
   })();
-  globalShortcut.register("Ctrl+Shift+.", () => {
+
+  const openDispaly = () => {
     if (showing) return;
     console.log("SHOW");
     showing = true;
@@ -109,8 +101,18 @@ app.whenReady().then(async () => {
         windows[display.id].show();
       });
     });
-  });
-  globalShortcut.register("ESC", () => {
+  };
+
+  const contextMenu = Menu.buildFromTemplate([
+    { label: 'Press "Ctrl + Shift + ."', type: "normal" },
+    { label: "To draw on your screen", type: "normal" },
+    { type: "separator" },
+    { label: "Press ESC", type: "normal" },
+    { label: "To exit from drawing mode", type: "normal" },
+    { type: "separator" },
+    { label: "Quit", type: "normal" },
+  ]);
+  const exitDisplay = () => {
     console.log("HIDE");
     windows.forEach((win) => {
       win.close();
@@ -118,7 +120,17 @@ app.whenReady().then(async () => {
     windows = [];
     clearInterval(inter);
     showing = false;
-  });
+  };
+  tray.setContextMenu(contextMenu);
+  contextMenu.items[0].click = openDispaly;
+  contextMenu.items[1].click = openDispaly;
+  contextMenu.items[6].click = () => {
+    app.exit();
+  };
+
+  globalShortcut.register("Ctrl+Shift+.", openDispaly);
+  globalShortcut.register("ESC", exitDisplay);
+  ipcMain.handle("exit", exitDisplay);
 });
 
 app.on("window-all-closed", () => {});
