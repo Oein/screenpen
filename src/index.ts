@@ -107,7 +107,7 @@ app.whenReady().then(async () => {
     showing = false;
   };
 
-  globalShortcut.register("Alt+`", openDispaly);
+  globalShortcut.register("Alt+Tab", openDispaly);
   globalShortcut.register("ESC", exitDisplay);
 });
 
