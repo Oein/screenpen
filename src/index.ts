@@ -6,7 +6,6 @@ import {
   Tray,
   Menu,
   nativeImage,
-  ipcMain,
 } from "electron";
 import path from "path";
 import screenshotDesktop from "screenshot-desktop";
@@ -19,20 +18,19 @@ const createWindow = (x: number, y: number, width: number, height: number) => {
     new BrowserWindow({
       x: x,
       y: y,
-      show: false,
+      show: true,
       hasShadow: false,
       minimizable: false,
       maximizable: false,
       closable: true,
       enableLargerThanScreen: true,
       fullscreenable: false,
+      fullscreen: false,
       kiosk: true,
       autoHideMenuBar: true,
       frame: false,
+      transparent: true,
       alwaysOnTop: true,
-      webPreferences: {
-        preload: path.join(__dirname, "preload.js"),
-      },
     })
   );
 
@@ -75,6 +73,12 @@ app.whenReady().then(async () => {
     })
   );
 
+  const contextMenu = Menu.buildFromTemplate([
+    { label: "Quit", type: "normal" },
+  ]);
+
+  tray.setContextMenu(contextMenu);
+
   await (async () => {
     displays = await screenshotDesktop.listDisplays();
   })();
@@ -90,28 +94,9 @@ app.whenReady().then(async () => {
     displays.forEach((display) => {
       let screenx = screens.filter((i) => i.id == display.id + 1)[0].bounds;
       createWindow(screenx.x, screenx.y, screenx.width, screenx.height);
-      screenshotDesktop({
-        screen: display.id,
-        format: "png",
-      }).then((screenshot) => {
-        let url = `data:image/png;base64,${screenshot.toString("base64")}`;
-        windows[display.id].webContents.executeJavaScript(
-          "image(`" + url + "`)"
-        );
-        windows[display.id].show();
-      });
     });
   };
 
-  const contextMenu = Menu.buildFromTemplate([
-    { label: 'Press "Ctrl + Shift + ."', type: "normal" },
-    { label: "To draw on your screen", type: "normal" },
-    { type: "separator" },
-    { label: "Press ESC", type: "normal" },
-    { label: "To exit from drawing mode", type: "normal" },
-    { type: "separator" },
-    { label: "Quit", type: "normal" },
-  ]);
   const exitDisplay = () => {
     console.log("HIDE");
     windows.forEach((win) => {
@@ -121,16 +106,9 @@ app.whenReady().then(async () => {
     clearInterval(inter);
     showing = false;
   };
-  tray.setContextMenu(contextMenu);
-  contextMenu.items[0].click = openDispaly;
-  contextMenu.items[1].click = openDispaly;
-  contextMenu.items[6].click = () => {
-    app.exit();
-  };
 
-  globalShortcut.register("Ctrl+Shift+.", openDispaly);
+  globalShortcut.register("Alt+`", openDispaly);
   globalShortcut.register("ESC", exitDisplay);
-  ipcMain.handle("exit", exitDisplay);
 });
 
 app.on("window-all-closed", () => {});

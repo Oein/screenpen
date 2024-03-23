@@ -75,10 +75,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/screenshot-desktop@^1.12.0":
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/@types/screenshot-desktop/-/screenshot-desktop-1.12.0.tgz#7304aae0f0cace1c36fcd9bc5419d280ba04af6f"
-  integrity sha512-jzYeXNOWXLTAUPnK1LV4AQNY5N0T45UTFAmxF5oYk9dFrkdtmFwQZRZ9+M2jOrDowQV5jrasEWPQLkGAf/yXNA==
+"@types/screenshot-desktop@^1.12.3":
+  version "1.12.3"
+  resolved "https://registry.yarnpkg.com/@types/screenshot-desktop/-/screenshot-desktop-1.12.3.tgz#912cf5bbd04f961928b9ebab374ce2e369c53da4"
+  integrity sha512-b1BoY60eEUwXgAE4le7gQFf78RWQxveF/ZKW5Ifh1+M4byPiyp3kP4qStVL+2pwrwaaJyN8qzeaczSDfz2WOPw==
   dependencies:
     "@types/node" "*"
 
@@ -433,6 +433,13 @@ ms@2.1.2:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
+node-global-key-listener@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/node-global-key-listener/-/node-global-key-listener-0.2.0.tgz#0f1fa54db9f5f6ede4b1da99c83533b7ccef812c"
+  integrity sha512-hC/up7q63dDFNX3xF1h2OfGkKOo4mBq5YZ7SSzqLQiFbSZsu7JP3L+i23/W+jhvBWuJfLW2vY0RDiWap5dsnPg==
+  dependencies:
+    sudo-prompt "^9.2.1"
+
 normalize-url@^6.0.1:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-6.1.0.tgz#40d0885b535deffe3f3147bec877d05fe4c5668a"
@@ -464,18 +471,6 @@ pend@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
   integrity sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg==
-
-pinkie-promise@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/pinkie-promise/-/pinkie-promise-2.0.1.tgz#2135d6dfa7a358c069ac9b178776288228450ffa"
-  integrity sha512-0Gni6D4UcLTbv9c57DfxDGdr41XfgUjqWZu492f0cIGr16zDU06BWP/RAEvOuo7CQ0CNjHaLlM59YJJFm3NWlw==
-  dependencies:
-    pinkie "^2.0.0"
-
-pinkie@^2.0.0:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
-  integrity sha512-MnUuEycAemtSaeFSjXKW/aroV7akBbY+Sv+RkyqFjgAe73F+MR0TBWKBRDkmfWq/HiFmdavfZ1G7h4SPZXaCSg==
 
 progress@^2.0.3:
   version "2.0.3"
@@ -526,12 +521,11 @@ roarr@^2.15.3:
     semver-compare "^1.0.0"
     sprintf-js "^1.1.2"
 
-screenshot-desktop@^0.0.0-development:
-  version "0.0.0-development"
-  resolved "https://registry.yarnpkg.com/screenshot-desktop/-/screenshot-desktop-0.0.0-development.tgz#adf637c18e65d5b13568b95f5968bd596e1bc9bd"
-  integrity sha512-sPsAG8ljGQjp9r0Ijy0SvGBxmoDeBdwjh+W96DhIfJHRAetdyjBwq6irHSnqXAjPWU/Id/RurjIKUkx+2xsmfA==
+screenshot-desktop@^1.15.0:
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/screenshot-desktop/-/screenshot-desktop-1.15.0.tgz#62109463865cdb1bbe61dff39003cd06ac404fb0"
+  integrity sha512-CLaZNBDEXU+KJ6BGsO8jSbKI7Zck7gQmFJHjzluBdwrVP0jOemP2avpD3ufWu81yqzwB92u2AMv+K9IlaslRsg==
   dependencies:
-    pinkie-promise "^2.0.1"
     temp "^0.9.4"
 
 semver-compare@^1.0.0:

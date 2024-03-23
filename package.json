@@ -10,11 +10,12 @@
   },
   "dependencies": {
     "@futpib/node-global-key-listener": "^1.0.3",
-    "@types/screenshot-desktop": "^1.12.0",
-    "screenshot-desktop": "^0.0.0-development"
+    "@types/screenshot-desktop": "^1.12.3",
+    "node-global-key-listener": "^0.2.0",
+    "screenshot-desktop": "^1.15.0"
   },
   "name": "screenpen",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": "oein",
   "build": {
     "productName": "screenpen",
