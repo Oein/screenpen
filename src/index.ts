@@ -74,7 +74,7 @@ app.whenReady().then(async () => {
   );
 
   const contextMenu = Menu.buildFromTemplate([
-    { label: "Quit", type: "normal" },
+    { label: "Quit", type: "normal",click: () => app.quit() },
   ]);
 
   tray.setContextMenu(contextMenu);
