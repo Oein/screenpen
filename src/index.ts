@@ -95,6 +95,9 @@ app.whenReady().then(async () => {
       let screenx = screens.filter((i) => i.id == display.id + 1)[0].bounds;
       createWindow(screenx.x, screenx.y, screenx.width, screenx.height);
     });
+
+
+    globalShortcut.register("ESC", exitDisplay);
   };
 
   const exitDisplay = () => {
@@ -105,10 +108,10 @@ app.whenReady().then(async () => {
     windows = [];
     clearInterval(inter);
     showing = false;
+    globalShortcut.unregister("ESC");
   };
 
-  globalShortcut.register("Alt+Tab", openDispaly);
-  globalShortcut.register("ESC", exitDisplay);
+  globalShortcut.register("Shift+Tab", openDispaly);
 });
 
 app.on("window-all-closed", () => {});
