@@ -354,7 +354,7 @@
           let p1 = state.points[0];
           let p2 = state.points[1];
 
-          drawCtx.moveTo(p2.x, p2.y);
+          drawCtx.moveTo(p2.x * 2, p2.y * 2);
           drawCtx.beginPath();
           drawCtx.strokeStyle = p2.color;
           let lastMid = midPointBtw(p1, p2);
@@ -363,20 +363,20 @@
             const midPoint = midPointBtw(p1, p2);
             drawCtx.strokeStyle = p2.color;
             drawCtx.quadraticCurveTo(
-              lastMid.x,
-              lastMid.y,
-              midPoint.x,
-              midPoint.y
+              lastMid.x * 2,
+              lastMid.y * 2,
+              midPoint.x * 2,
+              midPoint.y * 2
             );
             drawCtx.stroke();
-            drawCtx.moveTo(midPoint.x, midPoint.y);
+            drawCtx.moveTo(midPoint.x * 2, midPoint.y * 2);
             lastMid = midPoint;
             drawCtx.beginPath();
             p1 = state.points[i];
             p2 = state.points[i + 1];
           }
 
-          drawCtx.lineTo(p1.x, p1.y);
+          drawCtx.lineTo(p1.x * 2, p1.y * 2);
           drawCtx.stroke();
         }
 
@@ -386,7 +386,14 @@
 
         overlayCtx.beginPath();
         overlayCtx.fillStyle = brush.color;
-        overlayCtx.arc(brush.x, brush.y, BRUSH_RADIUS, 0, Math.PI * 2, true);
+        overlayCtx.arc(
+          brush.x * 2,
+          brush.y * 2,
+          BRUSH_RADIUS,
+          0,
+          Math.PI * 2,
+          true
+        );
         overlayCtx.fill();
       };
 
