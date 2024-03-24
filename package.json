@@ -15,7 +15,7 @@
     "screenshot-desktop": "^1.15.0"
   },
   "name": "screenpen",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "author": "oein",
   "build": {
     "productName": "screenpen",
